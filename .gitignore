@@ -1,2 +1,6 @@
 .idea
 PohodParser.iml
+.ipynb_checkpoints
+*__pycache__
+.gitignore
+*.txt
