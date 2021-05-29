@@ -31,7 +31,7 @@ def take_routes_urls(route_pages_num,session,headers):
 def main():
     route_url = "https://www.vpoxod.ru"
     time = datetime.datetime.today().strftime('%Y%m%d_%H%M')
-    filepath = f"data/kp_parsed_routes_{time}.txt"
+    filepath = f"../data/kp_parsed_routes_{time}.txt"
     print(f"Start Parsing {route_url}")
     print(f"Now {datetime.datetime.today().strftime('%Y-%m-%d : %H-%M-%S')}")
 
@@ -50,7 +50,8 @@ def main():
     }
     route_pages_num = define_last_num_of_routes(session, headers)
     print(f'Num of routes lists {route_pages_num}')
-    routes_urls = take_routes_urls(route_pages_num, session, headers)
+    # routes_urls = take_routes_urls(route_pages_num, session, headers)
+    routes_urls = take_routes_urls(1, session, headers)
     print(f"Num of routes {len(routes_urls)}")
 
     with open(filepath, 'w', encoding='utf-8') as f:
