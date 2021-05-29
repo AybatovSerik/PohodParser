@@ -17,7 +17,7 @@ headers = {
     'accept-language': 'en-US,en;q=0.9',
 }
 
-test_page = 'https://turclub-pik.ru/pohod/semeinaya-turciya-fridaiving-i-pokhod/2416/'
+test_page = 'https://turclub-pik.ru/pohod/po-shkheram-ladogi-na-baydarkah/2534/'
 route_object = RoutePIK()
 route_object.parse_page(test_page, session, headers)
 

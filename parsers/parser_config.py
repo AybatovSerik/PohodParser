@@ -1,4 +1,3 @@
-from Classes.RouteClassKP import RouteKP
 import requests
 
 session = requests.session()
@@ -14,15 +13,3 @@ headers = {
     'sec-fetch-user': '?1',
     'accept-language': 'en-US,en;q=0.9',
 }
-
-
-test_page = 'https://www.vpoxod.ru/route/Polsha/velopomorskoe_voevodstvo/about#tabs'
-route_object = RouteKP()
-route_object.parse_page(test_page, session, headers)
-
-# print(route_object.type)
-print(route_object.full_description)
-# print(route_object.to_json()['full_description'])
-# print(route_object.guides)
-# print(route_object.to_json()['guides'])
-# print(route_object.to_json()['hikes'])

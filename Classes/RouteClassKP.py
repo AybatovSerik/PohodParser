@@ -49,9 +49,9 @@ class RouteKP(Route):
 
     @catch_exceptions
     def parse_type(self):
-        type_pattern_re = re.compile('.*>([\w\s]+)<.*')
-        return  [re.search(type_pattern_re,col['title']).group(1)
-                 for col in self.soup.find(attrs={'class':'route_icons'}).children]
+        type_pattern_re = re.compile(r'.*>(.+)<.*')
+        return [re.search(type_pattern_re, col['title']).group(1)
+                 for col in self.soup.find(attrs={'class': 'route_icons'}).children]
 
     @catch_exceptions
     def parse_short_description(self):
@@ -86,7 +86,9 @@ class RouteKP(Route):
         full_desc_url = self.source + [i for i in self.tabs_title_url if 'Маршрут' in i.text][0].get('href')
         full_desc_page = session.get(full_desc_url, headers=headers)
         full_desc_soup = BeautifulSoup(full_desc_page.text, 'html.parser')
-        return str(full_desc_soup.find(attrs={'class': 'route_description_days'}))
+        # list_of_full_descs = full_desc_soup.find_all(attrs={'class': 'route_description_days'})
+        # list_of_full_desc_str = [str(tag) for tag in list_of_full_descs]
+        return str(full_desc_soup.find(attrs={'class': 'route_description'}))
 
     @catch_exceptions
     def parse_hikes(self):
@@ -124,7 +126,10 @@ class RouteKP(Route):
         self.short_description = self.parse_short_description()
         # self.guides = self.parse_guides()
         self.parse_guides()
-        self.mini_images, self.images = self.parse_img(session, headers)
+        try:
+            self.mini_images, self.images = self.parse_img(session, headers)
+        except:
+            pass
         self.full_description = self.parse_full_description(session, headers)
         self.parse_hikes()
 

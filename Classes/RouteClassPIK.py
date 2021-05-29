@@ -111,7 +111,10 @@ class RoutePIK(Route):
         self.type = self.parse_type()
         self.short_description = self.parse_short_description()
         self.full_description = self.parse_full_description()
-        self.mini_images, self.images = self.parse_img()
+        try:
+            self.mini_images, self.images = self.parse_img()
+        except:
+            pass
         self.parse_guides()
         self.parse_hikes()
 
