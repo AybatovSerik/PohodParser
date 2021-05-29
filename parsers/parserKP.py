@@ -20,8 +20,8 @@ def take_routes_urls(route_pages_num,session,headers):
         page_url = f"https://www.vpoxod.ru/route?per-page=48&page={page_num}"
         print(f'Page {page_num}: {page_url}')
         page_response = session.get(page_url, headers=headers)
-        page_soup = BeautifulSoup(page_response.text,'html.parser')
-        page_routes_list = page_soup.find_all(attrs={'class':'main_page_hike_title'})
+        page_soup = BeautifulSoup(page_response.text, 'html.parser')
+        page_routes_list = page_soup.find_all(attrs={'class': 'main_page_hike_title'})
         page_routes_list = [(route_url+route.find()['href']) for route in page_routes_list]
         routes_list += page_routes_list
 

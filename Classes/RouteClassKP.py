@@ -4,6 +4,7 @@ from Classes.RouteClass import Route
 from Classes.GuideClass import Guide
 from Classes.HikeClass import Hike
 
+
 def catch_exceptions(func):
     def inner_function(*args, **kwargs):
         try:
@@ -85,8 +86,6 @@ class RouteKP(Route):
         full_desc_url = self.source + [i for i in self.tabs_title_url if 'Маршрут' in i.text][0].get('href')
         full_desc_page = session.get(full_desc_url, headers=headers)
         full_desc_soup = BeautifulSoup(full_desc_page.text, 'html.parser')
-        # print(full_desc_soup)
-        # print(full_desc_soup.find())
         return str(full_desc_soup.find(attrs={'class': 'route_description_days'}))
 
     @catch_exceptions
@@ -98,6 +97,7 @@ class RouteKP(Route):
                 hike.date_start = row.find('td').find(attrs={'itemprop': 'startDate'}).get('content')
                 hike.date_end = row.find('td').find(attrs={'itemprop': 'endDate'}).get('content')
                 hike.price = row.find('td').find(attrs={'itemprop': 'price'}).get('content')
+                hike.price_curr = row.find('td').find(attrs={'itemprop': 'priceCurrency'}).get('content')
                 hike.is_full = 'набор группы окончен' in row.text
                 self.hikes.append(hike)
             except:
