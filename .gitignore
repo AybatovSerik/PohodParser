@@ -1,6 +1,8 @@
+/processing/config.py
 .idea
-PohodParser.iml
+/PohodParser.iml
 .ipynb_checkpoints
 *__pycache__
 .gitignore
 *.txt
+

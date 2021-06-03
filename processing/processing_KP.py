@@ -24,6 +24,7 @@ kp_level_map = {
 # Not in map -> 1, print url and level
 # kp_level_map.get(x,0)
 
+
 def parse_distance_kp(x_str):
     if x_str is None:
         return None
@@ -43,6 +44,7 @@ def parse_distance_kp(x_str):
     else:
         return None
 
+
 def parse_duration_kp(x_str):
     if x_str is None:
         return None
@@ -53,9 +55,9 @@ def parse_duration_kp(x_str):
     or_dur = re.findall(r'Длительность:[^0-9.]*([0-9]+)[^0-9.]*или[^0-9.]*([0-9]+)', x)
     if len(or_dur)>0:
         return (int(or_dur[0][0]) + int(or_dur[0][1]))//2
-    elif len(sum_of_dur)>0:
+    elif len(sum_of_dur)> 0:
         return int(sum_of_dur[0][0]) + int(sum_of_dur[0][1])
-    elif len(average_dur)>0:
+    elif len(average_dur)> 0:
         if int(average_dur[0][1]) < int(average_dur[0][0]):
             return int(average_dur[0][0])
         else:
